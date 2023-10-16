@@ -6,7 +6,7 @@
 /*   By: dley <dley@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:43:56 by dley              #+#    #+#             */
-/*   Updated: 2023/10/16 19:35:29 by dley             ###   ########.fr       */
+/*   Updated: 2023/10/16 20:17:16 by dley             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ stock une fois qu'un "/n" est trouve. */
 
 char	*ft_line(int fd, char *stock, char *buffer)
 {
-	read(fd, buffer, BUFFER_SIZE);
-	if (!ft_strchr(buffer, '\n'))
+	int	bytes_read;
+
+	bytes_read = 1;
+	while (!ft_strchr(buffer, '\n') && bytes_read != 0)
 	{
+		bytes_read = (fd, buffer, BUFFER_SIZE);
 		stock = ft_strjoin(stock, buffer);
-		ft_line(fd, stock, buffer);
-		return (stock);
 	}
-	else
-		return (buffer);
+	return (stock);
 }
 
 char	*get_next_line(int fd)
