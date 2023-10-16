@@ -6,7 +6,7 @@
 /*   By: dley <dley@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:44:20 by dley              #+#    #+#             */
-/*   Updated: 2023/10/12 11:51:54 by dley             ###   ########.fr       */
+/*   Updated: 2023/10/16 22:43:05 by dley             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,24 @@ char	*ft_strchr(const char *str, int c)
 	return (NULL);
 }
 
+// Ajout uniquement pour l'utilisation de ft_strjoin
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (src[i] && i < size - 1)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (ft_strlen(src));
+}
+
 /* Alloue et retourne une nouvelle chaîne, résultat de la 
 concaténation de s1 et s2 */
 
@@ -60,32 +78,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcpy(join, s1, ft_strlen(s1) + 1);
 	ft_strlcpy(join + ft_strlen(s1), s2, ft_strlen(s2) + 1);
 	return (join);
-}
-
-/*  - Alloue et retourne une chaîne de caractères issue de la chaîne ’s’.
-	- Cette nouvelle chaîne commence à l’index ’start’ et a pour taille 
-	maximale ’len’ */
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*cpy;
-
-	i = 0;
-	if (s == NULL)
-		return (NULL);
-	if (ft_strlen(s) < start)
-		return (ft_strdup(""));
-	if (ft_strlen(s) < len + start)
-		cpy = (char *)ft_calloc(ft_strlen(s) - start + 1, sizeof(char));
-	else
-		cpy = (char *)ft_calloc(len + 1, sizeof(char));
-	if (cpy == NULL)
-		return (NULL);
-	while (s[start + i] && i < len)
-	{
-		cpy[i] = s[start + i];
-		i++;
-	}
-	return (cpy);
 }
