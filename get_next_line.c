@@ -6,7 +6,7 @@
 /*   By: dley <dley@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:43:56 by dley              #+#    #+#             */
-/*   Updated: 2023/09/25 13:24:54 by dley             ###   ########.fr       */
+/*   Updated: 2023/10/16 19:33:30 by dley             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ char	*get_next_line(int fd)
 	char			*buffer;
 	ssize_t			i;
 
-	buffer = malloc (sizeof (char) * (BUFFER_SIZE + 1));
+	if (fd < 0 || BUFFER_SIZE <= 0)
+        return (NULL);
+    buffer = malloc (sizeof (char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	stock = ft_line(fd, stock, buffer);
