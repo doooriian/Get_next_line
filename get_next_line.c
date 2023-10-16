@@ -6,7 +6,7 @@
 /*   By: dley <dley@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:43:56 by dley              #+#    #+#             */
-/*   Updated: 2023/10/17 01:37:15 by dley             ###   ########.fr       */
+/*   Updated: 2023/10/17 01:59:25 by dley             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ char	*ft_stock(char *stash)
 	int		j;
 
 	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
+	j = 0;
 	if (!stash[i])
 	{	
 		free (stash);
 		return (NULL);
 	}
+	while (stash[i] && stash[i] != '\n')
+		i++;
 	stock = malloc(sizeof(char) * (ft_strlen(stash) - i + 1));
 	i++;
-	j = 0;
 	while (stash[i])
 	{
 		stock[j] = stash[i];
@@ -52,24 +52,25 @@ char	*ft_line(char *stash)
 {
 	char	*line;
 	int		i;
-
+	int		j;
+	
 	i = 0;
+	j = 0;
 	if (!stash[i])
 		return (NULL);
-	while (stash[i] && stash[i] != '\n')
+	while (stash[i] != '\0' && stash[i] != '\n')
 		i++;
 	line = malloc(sizeof(char) * (i + 2));
 	if (!line)
 		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
+	while (j <= i)
 	{
-		line[i] = stash[i];
-		i++;
+		line[j] = stash[j];
+		j++;
 	}
-	if (stash[i] && stash[i] == '\n')
-		line[i++] = '\n';
-	line[i++] = '\0';
+	if (stash[i] != '\0')
+		line[j] = '\n';
+	line[j++] = '\0';
 	return (line);
 }
 
