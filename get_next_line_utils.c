@@ -6,7 +6,7 @@
 /*   By: dley <dley@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:44:20 by dley              #+#    #+#             */
-/*   Updated: 2023/10/16 22:43:05 by dley             ###   ########.fr       */
+/*   Updated: 2023/10/16 23:02:25 by dley             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ recherché dans la chaîne, ou un pointeur nul (NULL) s'il ne le trouve pas.*/
 
 char	*ft_strchr(const char *str, int c)
 {
+	if (!str)
+		return (NULL);
 	while (*str)
 	{
 		if (*str == (unsigned char) c)
