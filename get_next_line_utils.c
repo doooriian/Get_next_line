@@ -6,7 +6,7 @@
 /*   By: dley <dley@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:44:20 by dley              #+#    #+#             */
-/*   Updated: 2023/10/16 23:02:25 by dley             ###   ########.fr       */
+/*   Updated: 2023/11/17 22:53:20 by dley             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ recherché dans la chaîne, ou un pointeur nul (NULL) s'il ne le trouve pas.*/
 
 char	*ft_strchr(const char *str, int c)
 {
-	if (!str)
-		return (NULL);
 	while (*str)
 	{
 		if (*str == (unsigned char) c)
@@ -45,22 +43,46 @@ char	*ft_strchr(const char *str, int c)
 	return (NULL);
 }
 
-// Ajout uniquement pour l'utilisation de ft_strjoin
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+char	*ft_strdup(const char *s)
 {
-	size_t	i;
+	int		i;
+	int		j;
+	char	*str;
 
 	i = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	while (src[i] && i < size - 1)
+	j = ft_strlen(s);
+	str = (char *)malloc(sizeof(*str) * (j + 1));
+	while (i < j)
 	{
-		dest[i] = src[i];
+		str[i] = s[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (ft_strlen(src));
+	str[i] = '\0';
+	return (str);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (str == 0)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
+		i++;
+	}
+	str[j] = 0;
+	return (str);
 }
 
 /* Alloue et retourne une nouvelle chaîne, résultat de la 
@@ -68,16 +90,25 @@ concaténation de s1 et s2 */
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		len;
-	char	*join;
+	int		i;
+	int		j;
+	char	*str;
 
-	if (s1 == NULL || s2 == NULL)
+	i = 0;
+	j = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (str == NULL)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	join = malloc(len * sizeof(char));
-	if (join == NULL)
-		return (NULL);
-	ft_strlcpy(join, s1, ft_strlen(s1) + 1);
-	ft_strlcpy(join + ft_strlen(s1), s2, ft_strlen(s2) + 1);
-	return (join);
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j] != '\0')
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
 }
