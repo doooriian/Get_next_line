@@ -6,14 +6,14 @@
 /*   By: dley <dley@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:44:20 by dley              #+#    #+#             */
-/*   Updated: 2023/11/17 22:53:20 by dley             ###   ########.fr       */
+/*   Updated: 2023/11/19 14:38:52 by dley             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* Fonction qui calcul la longueur d'une chaine de caractere
-et qui renvoie le resultat */
+/*	Fonction qui calcul la longueur d'une chaine de caractere
+**	et qui renvoie le resultat */
 
 size_t	ft_strlen(const char *str)
 {
@@ -25,10 +25,10 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-/*  - Fonction utilisée pour rechercher la première occurrence d'un 
-caractère donné dans une chaîne de caractères
-	- Elle renvoie un pointeur vers la première occurrence du caractère 
-recherché dans la chaîne, ou un pointeur nul (NULL) s'il ne le trouve pas.*/
+/*	- Fonction utilisée pour rechercher la première occurrence d'un 
+**	caractère donné dans une chaîne de caractères
+** 	- Elle renvoie un pointeur vers la première occurrence du caractère 
+**	recherché dans la chaîne, ou un pointeur nul (NULL) s'il ne le trouve pas */
 
 char	*ft_strchr(const char *str, int c)
 {
@@ -42,6 +42,10 @@ char	*ft_strchr(const char *str, int c)
 		return ((char *) str);
 	return (NULL);
 }
+
+/*	Alloue et copie la chaine de caractere "s" dfans cette nouvelle
+**	chaine
+**	Elle retourne l'adresse de la chaine copie */
 
 char	*ft_strdup(const char *s)
 {
@@ -60,6 +64,10 @@ char	*ft_strdup(const char *s)
 	str[i] = '\0';
 	return (str);
 }
+
+/*	- Alloue et retourne une chaine de caractere issue de la chaine "s"
+**	- Cette nouvelle chaine commence a l'index "start" et a pour taille
+**	maximale "len" */
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -86,7 +94,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 }
 
 /* Alloue et retourne une nouvelle chaîne, résultat de la 
-concaténation de s1 et s2 */
+** concaténation de s1 et s2 */
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

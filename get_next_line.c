@@ -6,11 +6,15 @@
 /*   By: dley <dley@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:43:56 by dley              #+#    #+#             */
-/*   Updated: 2023/11/17 22:53:30 by dley             ###   ########.fr       */
+/*   Updated: 2023/11/19 15:18:32 by dley             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+/*	- Lis le fichier, et stock ce qui est lu au fur a 
+**	mesure dans "stock"
+**	- Retourne "stock" */
 
 char	*ft_read(int fd, char *stock, char *buffer)
 {
@@ -38,6 +42,11 @@ char	*ft_read(int fd, char *stock, char *buffer)
 	return (stock);
 }
 
+/*	- Prends le contenu de line, met ce qu'il reste apres
+	la ligne lue dans "stock" et le retourne
+**	- Rajoute le caractere null a la fin de la ligne (dans
+**	la variable line) */
+
 char	*ft_extract(char *line)
 {
 	size_t	i;
@@ -59,6 +68,11 @@ char	*ft_extract(char *line)
 	line[i + 1] = '\0';
 	return (stock);
 }
+
+/*	- Fonction principale du code, c'est dedans qu'on appel les vus 
+**	plus tot
+**	- Elle retourne la ligne lu et stock le "reste" (si il y en a)
+**	dans "stock" */
 
 char	*get_next_line(int fd)
 {
